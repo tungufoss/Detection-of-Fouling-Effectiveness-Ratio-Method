@@ -1,4 +1,4 @@
-# MATLAB Library
+# MATLAB Library for Detection of Fouling: Effectiveness Ratio Method
 
 This MATLAB library provides a collection of functions for various signal processing and data analysis tasks. The library includes functions for calculating ratios, performing signal detection, applying wavelet transforms, and more.
 
@@ -47,7 +47,7 @@ Contributions to this MATLAB library are welcome. If you have any suggestions, b
 
 ## License
 
-This MATLAB library is released under the [MIT License](LICENSE). You are free to use, modify, and distribute the library in accordance with the terms of the license.
+This MATLAB library is released under the [GNU general public licence](LICENSE). You are free to use, modify, and distribute the library in accordance with the terms of the license.
 
 ## Contact
 
