@@ -1,0 +1,46 @@
+function sets = getdatasets(what,maker)
+
+sets.nb = length(what);
+for i=1:sets.nb
+    name{i} = ['set' num2str(i,'%03.f')];
+end    
+sets.name=name;
+if strcmpi(maker,'Oggi_long') 
+  rep = 'C:\Users\Owner\Documents\MATLAB\MSc_Fouling\data_oggi\';
+  C = load([rep 'Clean_long.mat']);
+  F = load([rep 'Fouled_long_coef075.mat']);
+  for i=1:sets.nb
+     sets.(name{i}).clean = struct(...
+         'm_h', C.MH_M(:,what(i)),   'm_c', C.MC_M(:,what(i)),...
+         'Thi', C.THIN_M(:,what(i)), 'Tci', C.TCIN_M(:,what(i)),...
+         'Tho', C.THOUT_M(:,what(i)),'Tco', C.TCOUT_M(:,what(i)));
+     sets.(name{i}).fouling = struct(...
+         'm_h', F.MH_M(:,what(i)),   'm_c', F.MC_M(:,what(i)),...
+         'Thi', F.THIN_M(:,what(i)), 'Tci', F.TCIN_M(:,what(i)),...
+         'Tho', F.THOUT_M(:,what(i)),'Tco', F.TCOUT_M(:,what(i)));
+  end   
+elseif strcmpi(maker,'Oggi_short')
+  rep = 'C:\Users\Owner\Documents\MATLAB\MSc_Fouling\data_oggi\';
+  C = load([rep 'Clean_short.mat']);
+  F = load([rep 'Fouled_short_coef075.mat']);
+  for i=1:sets.nb
+     sets.(name{i}).clean = struct(...
+         'm_h', C.MH_M(:,what(i)),   'm_c', C.MC_M(:,what(i)),...
+         'Thi', C.THIN_M(:,what(i)), 'Tci', C.TCIN_M(:,what(i)),...
+         'Tho', C.THOUT_M(:,what(i)),'Tco', C.TCOUT_M(:,what(i)));
+     sets.(name{i}).fouling = struct(...
+         'm_h', F.MH_M(:,what(i)),   'm_c', F.MC_M(:,what(i)),...
+         'Thi', F.THIN_M(:,what(i)), 'Tci', F.TCIN_M(:,what(i)),...
+         'Tho', F.THOUT_M(:,what(i)),'Tco', F.TCOUT_M(:,what(i)));
+  end       
+elseif strcmpi(maker,'Sylvain')
+  rep = 'C:\Users\Owner\Documents\MATLAB\MSc_Fouling\data_sylvain\';
+  for i=1:sets.nb
+     load([rep 'data_useful_clean_' num2str(what(i),'%02.f') '.mat'])
+     sets.(name{i}).clean = struct(...
+         'm_h', m_h,'m_c', m_cold,'Thi', Thi,'Tci', Tci,'Tho', Tho,'Tco', Tco);
+     load([rep 'data_useful_fouling_' num2str(what(i),'%02.f') '.mat'])
+     sets.(name{i}).fouling = struct(...
+         'm_h', m_h,'m_c', m_cold,'Thi', Thi,'Tci', Tci,'Tho', Tho,'Tco', Tco);
+  end
+end
